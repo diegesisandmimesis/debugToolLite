@@ -13,9 +13,9 @@
 // Simple system command that forces a "breakpoint", dropping into the
 // interactive debugger.
 DefineSystemAction(DebugToolBreakpoint)
-	execAction() {
+	execAction(cmd) {
 		__debugTool.breakpoint();
-		aioSay('Exiting debugger.' );
+		aioSay('\nExiting debugger.\n ' );
 	}
 ;
 VerbRule(DebugToolBreakpoint) 'breakpoint': VerbProduction

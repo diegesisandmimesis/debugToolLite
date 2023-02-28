@@ -109,7 +109,7 @@ modify __debugTool
 			"\n<<debuggerPrompt>>";
 
 			// Get a line of input.
-			cmd = inputManager.getInputLine(nil);
+			cmd = inputManager.getInputLine();
 
 			// See if the input matches a debugger command.
 			r = parseDebuggerCommand(cmd);

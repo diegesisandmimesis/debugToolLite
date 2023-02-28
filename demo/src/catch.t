@@ -25,14 +25,19 @@ versionInfo:    GameID
         version = '1.0'
         IFID = '12345'
 	showAbout() {
-		"This is a simple test game that demonstrates the features
-		of the debugTool library.
+		"This is just a little demonstration of the behavior you
+		get from compiling with -D DEBUG_TOOL_CATCH_ALL.
 		<.p>
-		Taking the pebble will encounter a <q>breakpoint</q> and drop
-		control to the interactive debugger.
+		This just adds hooks for __debugTool to the exception
+		handlers in the game's main event loop, dropping into
+		the interactive debugger whenever a <q>bad</q> exception is
+		thrown (that is, an exception not related to normal
+		parser behavior:  runtime errors are <q>bad</q>, a verify()
+		method terminating command processing is not).
 		<.p>
-		The debugger can also be started by using the >BREAKPOINT
-		command at the regular parser prompt.
+		The pebble.dobjFor(Take) handler has a (deliberate)
+		error that will generate a runtime error, so you can see
+		this in action by typing >TAKE PEBBLE.
 		<.p>
 		Consult the README.txt document distributed with the library
 		source for a quick summary of how to use the library in your
@@ -54,13 +59,15 @@ startRoom: Room 'Void'
 	contType = Carrier
 ;
 +pebble: Thing 'pebble'
-	"A small, round pebble, marked <q>foozle = <<toString(foozle)>></q>. "
+	"A small, round pebble. "
 
-	foozle = 0
+	foozle = nil
 
 	dobjFor(Take) {
+		// This since foozle is nil, this will throw a runtime
+		// error, dropping us into the debugger.
 		action() {
-			__debugTool.breakpoint();
+			foozle += 1;
 			inherited();
 		}
 	}
