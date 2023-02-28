@@ -1,0 +1,11 @@
+-D LANGUAGE=english
+-D MESSAGESTYLE=neu
+-D __DEBUG_TOOL
+-D DEBUG_TOOL_PATH='..'
+-Fy obj -Fo obj
+-o games/noninteractive.t3
+-lib system
+-lib ../extensions/adv3lite/adv3Lite
+-lib ../debugTool
+-source reflect.t
+-source src/noninteractive.t
