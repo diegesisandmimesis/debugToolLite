@@ -120,6 +120,7 @@ replace mainCommandLoop() {
 		catch(RuntimeError rtErr) {
 			if(rtErr.isDebuggerSignal)
 				throw rtErr;
+			"\b[<<rtErr.displayException()>>]\b";
 			__debugTool.runtimeError(rtErr);
 		}
 		catch(Exception exc) {
